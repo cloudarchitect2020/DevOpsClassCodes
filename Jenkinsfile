@@ -24,10 +24,10 @@ pipeline{
                 }
             }
             stage('UnitTest'){
-                agent {label 'win_slave'}
+                agent {label 'slave1'}
                 steps{
                     git 'https://github.com/devops-trainer/DevOpsClassCodes.git'
-                    bat 'mvn test'
+                    sh 'mvn cobertura:cobertura -Dcobertura.report.format=xml'
                 }
                 post{
                     always{
